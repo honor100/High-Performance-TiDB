@@ -2,9 +2,9 @@
 
 - 系统包
 
-`yum install gcc-c++ git cmake3 golang wget git zlib-devel –y`
+`yum install gcc-c++ libstdc++-devel cmake3 zlib-devel –y`
 
- `ln -s /usr/bin/cmake3 /usr/bin/cmake`
+`ln -s -f /usr/bin/cmake3 /usr/bin/cmake`
  
  
 - golang 环境
@@ -41,12 +41,16 @@
 `make`
 
 
-### 拉取安装包
+### 编译tikv
 `git clone -b v4.0.4 https://github.com/tikv/tikv.git`
 
 `cd tikv`
 
-`make`
+`cat rust-toolchain | xargs rustup override set`
+
+`ROCKSDB_SYS_SSE=0 make dist_release`
+
+备注: ROCKSDB_SYS_SSE pingcap 自定义的环境变量，表示是否用 SSE 指令集，arm 架构不支持这个指令集。
 
 ### 启动验证：
 - 将编译后的文件拷贝到统一的目录：
