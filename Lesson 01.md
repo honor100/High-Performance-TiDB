@@ -1,4 +1,6 @@
-## 环境准备
+## Lesson 01 编译源码部署环境
+
+### 环境准备
 
 - 系统包
 
@@ -23,14 +25,14 @@
 
 
 
-## 编译pd
+### 编译 pd
 `git clone -b v4.0.4 https://github.com/tikv/pd.git`
 
 `cd pd`
 
 `make`
 
-## 编译tidb
+### 编译 tidb
 `git clone -b v4.0.4 https://github.com/pingcap/tidb.git`
 
 修改代码，实现启动事务时打印日志
@@ -41,7 +43,7 @@
 `make`
 
 
-### 编译tikv
+### 编译 tikv
 `git clone -b v4.0.4 https://github.com/tikv/tikv.git`
 
 `cd tikv`
@@ -53,6 +55,7 @@
 备注: ROCKSDB_SYS_SSE pingcap 自定义的环境变量，表示是否用 SSE 指令集，arm 架构不支持这个指令集。
 
 ### 启动验证：
+
 - 将编译后的文件拷贝到统一的目录：
 
 - 启动
@@ -65,6 +68,6 @@
 
 - 验证
 
-通过mysql客户端工具连接，正常连接则代表功能正常
+通过 mysql 客户端工具连接，正常连接则代表功能正常
 
 `mysql -h 127.0.0.1 -u root -P 4000`
